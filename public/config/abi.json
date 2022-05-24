@@ -1,27 +1,6 @@
 [
 	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_symbol",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_initBaseURI",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_initNotRevealedUri",
-				"type": "string"
-			}
-		],
+		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -121,7 +100,40 @@
 	},
 	{
 		"inputs": [],
-		"name": "addressCount",
+		"name": "PrimaryWithdraw",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "_collectionName",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "_collectionSymbol",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "amountMinted",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -130,19 +142,6 @@
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_newCount",
-				"type": "uint256"
-			}
-		],
-		"name": "addressCountReset",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -161,13 +160,6 @@
 		"name": "approve",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "backupWithdraw",
-		"outputs": [],
-		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -203,34 +195,21 @@
 		"type": "function"
 	},
 	{
-		"inputs": [],
-		"name": "cap",
-		"outputs": [
+		"inputs": [
 			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
+				"internalType": "uint256",
+				"name": "_tokenId",
+				"type": "uint256"
 			}
 		],
-		"stateMutability": "view",
+		"name": "burn",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
 		"inputs": [],
-		"name": "cap2",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "capCount",
+		"name": "burnCount",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -243,7 +222,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "capCount2",
+		"name": "claimCount",
 		"outputs": [
 			{
 				"internalType": "uint256",
@@ -252,6 +231,19 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_newCount",
+				"type": "uint256"
+			}
+		],
+		"name": "claimCountReset",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -325,19 +317,6 @@
 	},
 	{
 		"inputs": [],
-		"name": "maxMintAmount",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "maxSupply",
 		"outputs": [
 			{
@@ -390,19 +369,6 @@
 	},
 	{
 		"inputs": [],
-		"name": "notRevealedUri",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "owner",
 		"outputs": [
 			{
@@ -428,6 +394,19 @@
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "passUri",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
@@ -461,21 +440,7 @@
 	},
 	{
 		"inputs": [],
-		"name": "primaryWithdraw",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "reveal",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -591,32 +556,6 @@
 	{
 		"inputs": [
 			{
-				"internalType": "bool",
-				"name": "_newCap",
-				"type": "bool"
-			}
-		],
-		"name": "setCap2Bool",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bool",
-				"name": "_newCap",
-				"type": "bool"
-			}
-		],
-		"name": "setCapBool",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "addressInput",
 				"type": "address"
@@ -641,32 +580,6 @@
 			}
 		],
 		"name": "setClaimListActive",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_newCap",
-				"type": "uint256"
-			}
-		],
-		"name": "setClaimableCap",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_newCap",
-				"type": "uint256"
-			}
-		],
-		"name": "setClaimableCap2",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -706,11 +619,11 @@
 		"inputs": [
 			{
 				"internalType": "string",
-				"name": "_notRevealedURI",
+				"name": "_passURI",
 				"type": "string"
 			}
 		],
-		"name": "setNotRevealedURI",
+		"name": "setPassURI",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -718,12 +631,12 @@
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_newmaxMintAmount",
-				"type": "uint256"
+				"internalType": "bool",
+				"name": "_newBool",
+				"type": "bool"
 			}
 		],
-		"name": "setmaxMintAmount",
+		"name": "setReveal",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -755,49 +668,6 @@
 				"internalType": "string",
 				"name": "",
 				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenByIndex",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "tokenOfOwnerByIndex",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",

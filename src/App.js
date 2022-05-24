@@ -16,7 +16,7 @@ export const StyledButton = styled.button`
   padding: 40px;
   font-weight: bold;
   color: var(--secondary-text);
-  width: 150px;                                                       
+  width: 250px;                                                       
   cursor: pointer;
   box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
   -webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
@@ -62,7 +62,7 @@ export const ResponsiveWrapper = styled.div`
   flex-direction: column;
   justify-content: stretched;
   align-items: stretched;
-  width: 100%;
+  width: 80%;
   @media (min-width: 767px) {
     flex-direction: row;
   }
@@ -72,9 +72,9 @@ export const ResponsiveWrapper = styled.div`
 //67 alignment of media row colum etc
 
 export const StyledLogo = styled.img`
-  width: 200px;
+  width: 400px;
   @media (min-width:300px) {
-    width: 250px;
+    width: 450px;
   }
   transition: width 0.5s;
   transition: height 0.5s;
@@ -108,7 +108,7 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
-  const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
+  const [feedback, setFeedback] = useState(`Click Claim to mint your New NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
@@ -133,13 +133,13 @@ function App() {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
+    let totalGasLimit = String(gasLimit +((gasLimit* mintAmount)*.2));
     console.log("Cost: ", totalCostWei);
     console.log("Gas limit: ", totalGasLimit);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(mintAmount)
+      .mintClaimList(mintAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -208,7 +208,7 @@ function App() {
         flex={1}
         ai={"center"}      //change placement of the logo (right = top left of page)
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
-        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg.png" : null}
+        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg3.jpg" : null}
       >
         <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
         <s.SpacerSmall />
@@ -272,7 +272,7 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
+                  1 {CONFIG.SYMBOL} claim for {CONFIG.DISPLAY_COST}{" "}
                   {CONFIG.NETWORK.SYMBOL}.
                 </s.TextTitle>
                 <s.SpacerXSmall />
@@ -369,7 +369,7 @@ function App() {
                           getData();
                         }}
                       >
-                        {claimingNft ? "BUSY" : "BUY"}
+                        {claimingNft ? "BUSY" : "CLAIM"}
                       </StyledButton>
                     </s.Container>
                   </>
@@ -415,7 +415,7 @@ function App() {
               //adjusted bottom text bar 2  
             }}
           >
-            - The Minting Process will cut off at 3000 Cannibals Sold - DO NOT MINT AFTER 3K MAY LOSE GAS
+            - The Claim Process will allow previous Holder to Claim their new NFT -
           </s.TextDescription>
         </s.Container>
       </s.Container>
