@@ -12,13 +12,13 @@ export const StyledButton = styled.button`
   padding: 10px;
   border-radius: 50px;
   border: none;
-  background-color: var(--accent-new);
+  background-color: var(--secondary);
   padding: 40px;
   font-weight: bold;
   color: var(--secondary-text);
   width: 250px;                                                       
   cursor: pointer;
-  box-shadow: 12px 42px 2px 1px rgba(0, 0, 255, 0.2);
+  box-shadow: 12px 12px 2px 1px rgba(0, 0, 255, 0.2);
   -webkit-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
   -moz-box-shadow: 0px 6px 0px -2px rgba(250, 250, 250, 0.3);
   :active {
@@ -38,9 +38,9 @@ export const StyledRoundButton = styled.button`
   background-color: var(--primary);
   padding: 10px;
   font-weight: bold;
-  font-size: 25px;
+  font-size: 15px;
   color: var(--primary-text);
-  width: 60px;
+  width: 30px;
   height: 30px;
   cursor: pointer;
   display: flex;
@@ -62,7 +62,7 @@ export const ResponsiveWrapper = styled.div`
   flex-direction: column;
   justify-content: stretched;
   align-items: stretched;
-  width: 100%;
+  width: 80%;
   @media (min-width: 767px) {
     flex-direction: row;
   }
@@ -74,7 +74,7 @@ export const ResponsiveWrapper = styled.div`
 export const StyledLogo = styled.img`
   width: 400px;
   @media (min-width:300px) {
-    width: 350px;
+    width: 450px;
   }
   transition: width 0.5s;
   transition: height 0.5s;
@@ -82,16 +82,16 @@ export const StyledLogo = styled.img`
 //75 -77 logo adjustment settings
 
 export const StyledImg = styled.img`
-  box-shadow: 0px 35px 11px 2px rgba(0, 0, 0, 0.7);
-  border: 8px solid var(--accent);
+  box-shadow: 0px 5px 11px 2px rgba(0, 0, 0, 0.7);
+  border: 4px solid var(--accent);
   background-color: var(--accent);
   border-radius: 100%;
-  width: 500px;
+  width: 200px;
   @media (min-width: 900px) {
-    width: 400px;
+    width: 250px;
   }
   @media (min-width: 1000px) {
-    width: 400px;
+    width: 250px;
   }
   transition: width 0.5s;
 `;
@@ -108,7 +108,7 @@ function App() {
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
   const [claimingNft, setClaimingNft] = useState(false);
-  const [feedback, setFeedback] = useState(`Click buy to mint your NFT.`);
+  const [feedback, setFeedback] = useState(`Click Claim to mint your New NFT.`);
   const [mintAmount, setMintAmount] = useState(1);
   const [CONFIG, SET_CONFIG] = useState({
     CONTRACT_ADDRESS: "",
@@ -139,7 +139,7 @@ function App() {
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNft(true);
     blockchain.smartContract.methods
-      .mint(mintAmount)
+      .mintClaimList(mintAmount)
       .send({
         gasLimit: String(totalGasLimit),
         to: CONFIG.CONTRACT_ADDRESS,
@@ -208,16 +208,13 @@ function App() {
         flex={1}
         ai={"center"}      //change placement of the logo (right = top left of page)
         style={{ padding: 24, backgroundColor: "var(--primary)" }}
-        image={CONFIG.SHOW_BACKGROUND ? "/config/images/newBG.png" : null}
+        image={CONFIG.SHOW_BACKGROUND ? "/config/images/bg3.jpg" : null}
       >
-   <s.SpacerLarge/>
-   <s.SpacerLarge/><s.SpacerLarge/><s.SpacerLarge/><s.SpacerLarge/><s.SpacerLarge/><s.SpacerLarge/>
-     
+        <StyledLogo alt={"logo"} src={"/config/images/logo.png"} />
         <s.SpacerSmall />
         <ResponsiveWrapper flex={1} style={{ padding: 24 }} test>
-          <s.SpacerLarge/><s.SpacerLarge/><s.SpacerLarge/>
           <s.Container flex={1} jc={"center"} ai={"center"}>
-           
+            <StyledImg alt={"example"} src={"/config/images/example.gif"} />
           </s.Container>
           <s.SpacerLarge />
           <s.Container
@@ -229,7 +226,7 @@ function App() {
               padding: 24,
               borderRadius: 24,
               border: "4px solid var(--secondary)",
-              boxShadow: "0px 25px 15px 2px rgba(0,0,0,0.7)",
+              boxShadow: "0px 5px 11px 2px rgba(0,0,0,0.7)",
             }}
           >
             <s.TextTitle
@@ -275,7 +272,7 @@ function App() {
                 <s.TextTitle
                   style={{ textAlign: "center", color: "var(--accent-text)" }}
                 >
-                  1 {CONFIG.SYMBOL} costs {CONFIG.DISPLAY_COST}{" "}
+                  1 {CONFIG.SYMBOL} claim for {CONFIG.DISPLAY_COST}{" "}
                   {CONFIG.NETWORK.SYMBOL}.
                 </s.TextTitle>
                 <s.SpacerXSmall />
@@ -372,7 +369,7 @@ function App() {
                           getData();
                         }}
                       >
-                        {claimingNft ? "BUSY" : "BUY"}
+                        {claimingNft ? "BUSY" : "CLAIM"}
                       </StyledButton>
                     </s.Container>
                   </>
@@ -380,16 +377,13 @@ function App() {
               </>
             )}
             <s.SpacerMedium />
-            
           </s.Container>
-        
-          <s.SpacerLarge/>  <s.SpacerLarge/>  <s.SpacerLarge/>
-          <s.SpacerLarge/>
+          <s.SpacerLarge />
           <s.Container flex={1} jc={"center"} ai={"center"}>
             <StyledImg
               alt={"example"}
               src={"/config/images/example.gif"}
-           
+              style={{ transform: "scaleX(-1)" }}
             />
           </s.Container>
         </ResponsiveWrapper>
@@ -421,7 +415,7 @@ function App() {
               //adjusted bottom text bar 2  
             }}
           >
-            - Welcome to the CAVE -
+            - The Claim Process will allow previous Holder to Claim their new NFT -
           </s.TextDescription>
         </s.Container>
       </s.Container>
